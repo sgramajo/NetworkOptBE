@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import model.HomeKitchen;
+import model.ItemInfo;
 import model.Reviews;
 
 /* This class deals with the collaborative filtering
@@ -23,30 +24,30 @@ import model.Reviews;
 public class Collaborative {
 	
 	public static List<String> users = new ArrayList<String>(); 
-	public static List<HomeKitchen> utensils = new ArrayList<HomeKitchen>(); 
+	public static Map<String, List<Reviews>>reviewMap = new HashMap<String, List<Reviews>>(); 
+	public static Map<String, HomeKitchen> map = new HashMap<String, HomeKitchen>(); 
 	
 	public Collaborative(){
-		//empty constructor
+		users.clear();
+		map.clear();
+		readInput(); 
 	}
 
 	//read the Json files and stores them into models
-	public static List<HomeKitchen> readInput() {
+	public static void readInput() {
 		GsonBuilder gsonBuild = new GsonBuilder().serializeNulls().setPrettyPrinting();
 		Gson gson = gsonBuild.create(); 
 		List<HomeKitchen> data = new ArrayList<HomeKitchen>(); 
 		List<Reviews> reviewData = new ArrayList<Reviews>(); 
-		Map<String, HomeKitchen> map = new HashMap<String, HomeKitchen>(); 
-		String url1 = "workspace/NetworkBackEnd/src/resources/HomeKitchen.json"; 
-		String url2 = "workspace/NetworkBackEnd/src/resources/partial.json"; 
+		String url1 = "C:/Users/stacygramajo03/workspace/NetworkBackEnd/src/resources/HomeKitchen.json"; 
+		String url2 = "C:/Users/stacygramajo03/workspace/NetworkBackEnd/src/resources/partial.json"; 
 		//this can be used to map the items to the reviews
-		Map<String, List<Reviews>>reviewMap = new HashMap<String, List<Reviews>>(); 
 		try(Reader reader = new FileReader(url1)){
 			//Json -> Object
 			Type listType = new TypeToken<ArrayList<HomeKitchen>>(){}.getType(); 
 			data = gson.fromJson(reader, listType); 
 			//put it into a map
 			for(HomeKitchen i: data) map.put(i.getAsin(), i);
-			//printJson(data); //this can be used to view all of the data 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,13 +77,24 @@ public class Collaborative {
 		}catch(IOException e){
 			e.printStackTrace();
 		} 
-		return data; 
 	}
+
 	//Retrieve one item's information 
-	private static void retrieveOneItem(){
-		
+	public static ItemInfo retrieveOneItem(String itemID){
+		List<Reviews> list = reviewMap.get(itemID);
+		HomeKitchen item = map.get(itemID); 
+		ItemInfo returnItem = new ItemInfo(item, list);
+		return returnItem; 
 	}
 	
+	//this contains all of the items information that has x reviews
+	public static List<HomeKitchen> createArray(){
+		List<HomeKitchen> simpleArrayOfLists = new ArrayList<HomeKitchen>();
+		reviewMap.forEach((x,y) -> {
+			simpleArrayOfLists.add(map.get(x)); 
+		});
+		return simpleArrayOfLists; 
+	}
 	//print out matrix
 	private static void printMatrix(Map<String, List<Reviews>> map) {
 		//initializing variables that is useful to set up the matrix
