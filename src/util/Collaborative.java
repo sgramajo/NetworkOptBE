@@ -1,15 +1,11 @@
 package util;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,9 +34,11 @@ public class Collaborative {
 		GsonBuilder gsonBuild = new GsonBuilder().serializeNulls().setPrettyPrinting();
 		Gson gson = gsonBuild.create(); 
 		List<HomeKitchen> data = new ArrayList<HomeKitchen>(); 
-		List<Reviews> reviewData = new ArrayList<Reviews>(); 
-		String url1 = "C:/Users/stacygramajo03/workspace/NetworkBackEnd/src/resources/HomeKitchen.json"; 
-		String url2 = "C:/Users/stacygramajo03/workspace/NetworkBackEnd/src/resources/partial.json"; 
+		List<Reviews> reviewData = new ArrayList<Reviews>();
+		String basepath = new File("").getAbsolutePath();
+
+		String url1 = basepath + "/src/resources/HomeKitchen.json";
+		String url2 = basepath + "/src/resources/partial.json";
 		//this can be used to map the items to the reviews
 		try(Reader reader = new FileReader(url1)){
 			//Json -> Object
@@ -104,11 +102,98 @@ public class Collaborative {
 			System.out.println(x + " has " + y.size() + " reviews"); 
 			//y.forEach(x -> ); 
 		});
-		
+
 	}
 	
 	private static void printJson(List<HomeKitchen> data){
 		data.forEach(x -> System.out.println(x.toString()));
+	}
+
+	// Class to implement collaborative filter
+	public static void calculateRatings(){
+
+		//printMatrix(reviewMap);
+
+		// Row and column variables
+		int itemCount = reviewMap.size();
+		int userCount;
+
+		// Create arraylist matrix of items and their reviews by users
+		HashMap<String, HashMap<String, Double>> ratings = new HashMap<>(itemCount);
+
+		// Retrieve list of users for all items
+		ArrayList<String> userList = new ArrayList<>();
+		reviewMap.forEach((itemID, reviewLst) -> {
+			reviewLst.forEach(review -> {
+				if(!userList.contains(review.getReviewerID())){
+					userList.add(review.getReviewerID());
+				}
+			});
+		});
+		userCount = userList.size();
+
+		// Initialilze ratings matrix, aka set all reviews to 0.0
+		// Then retrive ratigs for all reviews for each item
+		reviewMap.forEach((itemID, reviewLst) -> {
+			ratings.put(itemID, new HashMap<String, Double>(){{
+				userList.forEach(user -> put(user, 0.0));
+			}});
+			reviewLst.forEach(review -> {
+				ratings.get(itemID).put(review.getReviewerID(), review.getOverall());
+			});
+		});
+
+		// Debugger print
+//		ratings.forEach((itemID, reviewHash) -> {
+//			reviewHash.forEach((userID, rating) -> {
+//				if(rating > 0.0)
+//					System.out.print(rating + " ");
+//			});
+//			System.out.println();
+//		});
+
+		// Begin calculations to estimate missing ratings
+
+		// Step 1: normalize ratings
+		HashMap<String, HashMap<String, Double>> normalizedRatings = normalizeRatings(ratings, itemCount, userCount, userList);
+
+	}
+
+	// Normalize ratings by subtracting average item rating for each item (row mean)
+	// Makes 0 the average rating for an item
+	private static HashMap<String, HashMap<String, Double>> normalizeRatings(HashMap<String, HashMap<String, Double>> ratings, int itemCount, int userCount, ArrayList<String> userList){
+
+		HashMap<String, HashMap<String, Double>> normalizedRatings = new HashMap<>(itemCount);
+		normalizedRatings.forEach((itemID, reviewLst) ->{
+			ratings.put(itemID, new HashMap<String, Double>(){{
+				userList.forEach(user -> put(user, 0.0));
+			}});
+		});
+
+		// Calculate row mean for all items
+		HashMap<String, Double> itemRatingMean = new HashMap<>();
+
+		double ratingMean = 0.0;
+
+		for(Map.Entry<String, HashMap<String, Double>> itemRatingEntry : ratings.entrySet()){
+			ratingMean = 0.0;
+			for(Map.Entry<String, Double> userRatingEntry : itemRatingEntry.getValue().entrySet()){
+				ratingMean += userRatingEntry.getValue();
+			}
+
+			ratingMean /= reviewMap.get(itemRatingEntry.getKey()).size();
+			itemRatingMean.put(itemRatingEntry.getKey(), ratingMean);
+		}
+
+		// Subtract row mean from ratinfs to normalize
+		for(Map.Entry<String, HashMap<String, Double>> itemRatingEntry : ratings.entrySet()){
+			for(Map.Entry<String, Double> userRatingEntry : itemRatingEntry.getValue().entrySet()){
+				if(userRatingEntry.getValue() != 0.0)
+					normalizedRatings.get(itemRatingEntry.getKey()).put(userRatingEntry.getKey(), userRatingEntry.getValue() - itemRatingMean.get(itemRatingEntry.getKey()));
+			}
+		}
+
+		return normalizedRatings;
 	}
 
 }
