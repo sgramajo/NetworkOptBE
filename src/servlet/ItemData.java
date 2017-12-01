@@ -30,7 +30,6 @@ public class ItemData extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String itemID = request.getParameter("itemID"); 
 		response.setContentType("application/json");
@@ -45,10 +44,20 @@ public class ItemData extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * This retrieves the global baseline or collaborative Filtering (item to item)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		String itemID = request.getParameter("itemID"); 
+		String userID = request.getParameter("userID");
+		String type = request.getParameter("type");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Access-Control-Allow-Origin", "*");//cross domain request/CORS
+		Gson gson = new Gson(); 
+		Collaborative items = new Collaborative(); 
+		String result = Double.toString(items.getRating(itemID, userID, type)); 
+		response.getWriter().write(result);
 	}
 
 }
