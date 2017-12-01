@@ -22,7 +22,7 @@ public class Collaborative {
 	public static List<String> users = new ArrayList<String>(); 
 	public static Map<String, List<Reviews>>reviewMap = new HashMap<String, List<Reviews>>(); 
 	public static Map<String, HomeKitchen> map = new HashMap<String, HomeKitchen>(); 
-	
+	public static int N = 10; 
 	public Collaborative(){
 		users.clear();
 		map.clear();
@@ -35,7 +35,7 @@ public class Collaborative {
 		Gson gson = gsonBuild.create(); 
 		List<HomeKitchen> data = new ArrayList<HomeKitchen>(); 
 		List<Reviews> reviewData = new ArrayList<Reviews>();
-		String basepath = new File("").getAbsolutePath();
+		String basepath = "C://Users/stacygramajo03/workspace/NetworkBackEnd";
 
 		String url1 = basepath + "/src/resources/HomeKitchen.json";
 		String url2 = basepath + "/src/resources/partial.json";
