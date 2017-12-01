@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab4b5c18-d418-4b35-8d74-ce993c41f7da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Collaborative.java" afterPath="$PROJECT_DIR$/src/util/Collaborative.java" />
-    </list>
+    <list default="true" id="ab4b5c18-d418-4b35-8d74-ce993c41f7da" name="Default" comment="" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +13,8 @@
       <file leaf-file-name="Collaborative.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/Collaborative.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8883">
-              <caret line="150" column="57" lean-forward="false" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
+            <state relative-caret-position="1157">
+              <caret line="401" column="0" lean-forward="true" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
               <folding>
                 <element signature="e#3884#3885#0" expanded="true" />
                 <element signature="e#3942#3943#0" expanded="true" />
@@ -252,7 +250,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348000" />
+    <option name="totallyTimeSpent" value="480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3872" height="2116" extended-state="6" />
@@ -763,8 +761,8 @@
     <entry file="file://$PROJECT_DIR$/src/util/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/util/Collaborative.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8883">
-          <caret line="150" column="57" lean-forward="false" selection-start-line="150" selection-start-column="57" selection-end-line="150" selection-end-column="57" />
+        <state relative-caret-position="1157">
+          <caret line="401" column="0" lean-forward="true" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
