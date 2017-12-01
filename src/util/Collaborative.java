@@ -118,24 +118,11 @@ public class Collaborative {
 		data.forEach(x -> System.out.println(x.toString()));
 	}
 
-	// Class to implement item-item collaborative filter method
-	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithItem_ItemFilter(){
-
-		// Row and column variables
-		int itemCount = reviewMap.size();
+	// Get ratings matrix
+	private static HashMap<String, HashMap<String, Double>> getRatings(ArrayList<String> userList){
 
 		// Create arraylist matrix of items and their reviews by users
-		HashMap<String, HashMap<String, Double>> ratings = new HashMap<>(itemCount);
-
-		// Retrieve list of users for all items
-		ArrayList<String> userList = new ArrayList<>();
-		reviewMap.forEach((itemID, reviewLst) -> {
-			reviewLst.forEach(review -> {
-				if(!userList.contains(review.getReviewerID())){
-					userList.add(review.getReviewerID());
-				}
-			});
-		});
+		HashMap<String, HashMap<String, Double>> ratings = new HashMap<>();
 
 		// Initialilze ratings matrix, aka set all reviews to 0.0
 		// Then retrive ratigs for all reviews for each item
@@ -148,7 +135,38 @@ public class Collaborative {
 			});
 		});
 
+		return ratings;
+	}
+
+	// Get user list
+	private static ArrayList<String> getUsers(){
+		// Retrieve list of users for all items
+		ArrayList<String> userList = new ArrayList<>();
+		reviewMap.forEach((itemID, reviewLst) -> {
+			reviewLst.forEach(review -> {
+				if(!userList.contains(review.getReviewerID())){
+					userList.add(review.getReviewerID());
+				}
+			});
+		});
+
+		return userList;
+	}
+
+	// Class to implement item-item collaborative filter method
+	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithItem_ItemFilter(){
+
+		// Row and column variables
+		int itemCount = reviewMap.size();
+
+		// Create arraylist matrix of items and their reviews by users
+		ArrayList<String> userList = getUsers();
+		HashMap<String, HashMap<String, Double>> ratings = getRatings(userList);
+
 		// Begin calculations to estimate missing ratings
+
+		// Calculate general statistics of ratings: mean item ratings, mean user ratings, global mean item rating, and global mean user rating
+		calculateMeanVariables(ratings, userList);
 
 		// Step 1: normalize ratings
 		HashMap<String, HashMap<String, Double>> normalizedRatings = normalizeRatings(ratings, itemCount, userList);
@@ -165,32 +183,9 @@ public class Collaborative {
 	// Class to implement global baseline method
 	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithGlobalBaseline(){
 
-		// Row and column variables
-		int itemCount = reviewMap.size();
-
 		// Create arraylist matrix of items and their reviews by users
-		HashMap<String, HashMap<String, Double>> ratings = new HashMap<>(itemCount);
-
-		// Retrieve list of users for all items
-		ArrayList<String> userList = new ArrayList<>();
-		reviewMap.forEach((itemID, reviewLst) -> {
-			reviewLst.forEach(review -> {
-				if(!userList.contains(review.getReviewerID())){
-					userList.add(review.getReviewerID());
-				}
-			});
-		});
-
-		// Initialilze ratings matrix, aka set all reviews to 0.0
-		// Then retrive ratigs for all reviews for each item
-		reviewMap.forEach((itemID, reviewLst) -> {
-			ratings.put(itemID, new HashMap<String, Double>(){{
-				userList.forEach(user -> put(user, 0.0));
-			}});
-			reviewLst.forEach(review -> {
-				ratings.get(itemID).put(review.getReviewerID(), review.getOverall());
-			});
-		});
+		ArrayList<String> userList = getUsers();
+		HashMap<String, HashMap<String, Double>> ratings = getRatings(userList);
 
 		// Begin calculations to estimate missing ratings
 
@@ -203,20 +198,75 @@ public class Collaborative {
 		return ratings;
 	}
 
+	// Overloaded method to take in a pre-established ratings matrix
+	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithItem_ItemFilter(HashMap<String, HashMap<String, Double>> ratings){
+
+		// Row and column variables
+		int itemCount = reviewMap.size();
+
+		// Create arraylist matrix of items and their reviews by users
+		ArrayList<String> userList = getUsers();
+
+		// Begin calculations to estimate missing ratings
+
+		// Calculate general statistics of ratings: mean item ratings, mean user ratings, global mean item rating, and global mean user rating
+		calculateMeanVariables(ratings, userList);
+
+		// Step 1: normalize ratings
+		HashMap<String, HashMap<String, Double>> normalizedRatings = normalizeRatings(ratings, itemCount, userList);
+
+		// Step 2: calculate centered cosine similarity
+		HashMap<String, HashMap<String, Double>> similarityMatrix = calculateSimilarity(normalizedRatings, itemCount, userList);
+
+		// Step 3: estimate missing ratings
+		item_itemCollaborativeFilter(ratings, similarityMatrix);
+
+		return ratings;
+	}
+
+	// Overloaded method to take in a pre-established ratings matrix
+	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithGlobalBaseline(HashMap<String, HashMap<String, Double>> ratings){
+
+		// Create arraylist matrix of items and their reviews by users
+		ArrayList<String> userList = getUsers();
+
+		// Begin calculations to estimate missing ratings
+
+		// Calculate general statistics of ratings: mean item ratings, mean user ratings, global mean item rating, and global mean user rating
+		calculateMeanVariables(ratings, userList);
+
+		// Estimate ratings using global baseline estimate
+		globalBaselineEstimate(ratings);
+
+		return ratings;
+	}
+
+	// Accuracy test for recommender system
+	public static void testAccuracy(){
+
+		// Create arraylist matrix of items and their reviews by users
+		ArrayList<String> userList = getUsers();
+		HashMap<String, HashMap<String, Double>> actualRatings = getRatings(userList);
+
+		// Get ratings matrix that will be modified to "hide" certain ratings
+		HashMap<String, HashMap<String, Double>> modifiedRatings = getRatings(userList);
+
+		// Remove ratings
+
+	}
+
 	// Calculate the global baseline variables: row mean, column mean, global row mean, and global column mean
 	private static void calculateMeanVariables(HashMap<String, HashMap<String, Double>> ratings, ArrayList<String> userList){
 
 		// Calculate the row mean, or the average rating for every item
 		double itemRatingMean;
 
-		//System.out.println("Average item ratings: ");
 		for(Map.Entry<String, HashMap<String, Double>> itemRatingEntry : ratings.entrySet()){
 			itemRatingMean = 0.0;
 			for(Map.Entry<String, Double> userRatingEntry : itemRatingEntry.getValue().entrySet()){
 				itemRatingMean += userRatingEntry.getValue();
 			}
 			itemRatingMean /= reviewMap.get(itemRatingEntry.getKey()).size();
-			//System.out.print(itemRatingMean + " ");
 			meanItemRatings.put(itemRatingEntry.getKey(), itemRatingMean);
 		}
 
@@ -230,14 +280,11 @@ public class Collaborative {
 
 		globalMeanItemRating = itemRatingSummation / meanItemRatings.size();
 
-		//System.out.println("\n\nGlobal average item rating: " + globalMeanItemRating);
-
 
 		// Calculate the column mean, or the average rating given by every user
 		double userRatingMean;
 		int itemsRated;
 
-		//System.out.println("\n\nAverage user ratings: ");
 		for(String user : userList){
 			userRatingMean = 0.0;
 			itemsRated = 0;
@@ -246,7 +293,6 @@ public class Collaborative {
 				itemsRated = (ratings.get(itemRatingEntry.getKey()).get(user) == 0) ? itemsRated : itemsRated + 1;
 			}
 			userRatingMean /= itemsRated;
-			//System.out.println(userRatingMean + " ; items rated: " + itemsRated);
 			meanUserRatings.put(user, userRatingMean);
 		}
 
@@ -258,9 +304,6 @@ public class Collaborative {
 		}
 
 		globalMeanUserRating = userRatingSummation / meanUserRatings.size();
-
-		//System.out.println("\n\nGlobal average user rating: " + globalMeanUserRating);
-
 	}
 
 	// Normalize ratings by subtracting average item rating for each item (row mean)

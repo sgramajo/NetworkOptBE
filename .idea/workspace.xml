@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab4b5c18-d418-4b35-8d74-ce993c41f7da" name="Default" comment="" />
+    <list default="true" id="ab4b5c18-d418-4b35-8d74-ce993c41f7da" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Collaborative.java" afterPath="$PROJECT_DIR$/src/util/Collaborative.java" />
+    </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,59 +15,26 @@
       <file leaf-file-name="Collaborative.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/Collaborative.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1157">
-              <caret line="401" column="0" lean-forward="true" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
+            <state relative-caret-position="1403">
+              <caret line="451" column="1" lean-forward="false" selection-start-line="451" selection-start-column="1" selection-end-line="451" selection-end-column="1" />
               <folding>
                 <element signature="e#3884#3885#0" expanded="true" />
                 <element signature="e#3942#3943#0" expanded="true" />
-                <element signature="e#15214#15215#0" expanded="true" />
-                <element signature="e#15266#15267#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reviews.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Reviews.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/ItemData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RetrieveItems.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/RetrieveItems.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
+                <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+                <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+                <element signature="class#Item#0" expanded="false" />
+                <element signature="class#CustomComparator#0" expanded="false" />
+                <element signature="e#16879#16880#0" expanded="true" />
+                <element signature="e#16931#16932#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -250,7 +219,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="480000" />
+    <option name="totallyTimeSpent" value="511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3872" height="2116" extended-state="6" />
@@ -362,7 +331,6 @@
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -373,7 +341,6 @@
           <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -437,7 +404,6 @@
           <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -448,7 +414,6 @@
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -469,8 +434,21 @@
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -482,8 +460,21 @@
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -511,7 +502,6 @@
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -522,7 +512,6 @@
           <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -534,8 +523,21 @@
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -563,7 +565,6 @@
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -574,7 +575,6 @@
           <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -586,8 +586,21 @@
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -606,7 +619,6 @@
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -618,7 +630,6 @@
           <caret line="38" column="4" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -638,8 +649,21 @@
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -659,7 +683,6 @@
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -670,7 +693,6 @@
           <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -734,7 +756,6 @@
           <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422140" expanded="true" signature="2093:2095" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -745,7 +766,6 @@
           <caret line="5" column="33" lean-forward="false" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1512144422130" expanded="true" signature="1738:1740" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -761,13 +781,26 @@
     <entry file="file://$PROJECT_DIR$/src/util/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/util/Collaborative.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1157">
-          <caret line="401" column="0" lean-forward="true" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
+        <state relative-caret-position="1403">
+          <caret line="451" column="1" lean-forward="false" selection-start-line="451" selection-start-column="1" selection-end-line="451" selection-end-column="1" />
           <folding>
             <element signature="e#3884#3885#0" expanded="true" />
             <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#15214#15215#0" expanded="true" />
-            <element signature="e#15266#15267#0" expanded="true" />
+            <element signature="method#getRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#getUsers#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithItem_ItemFilter#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateRatingsWithGlobalBaseline#1;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateMeanVariables#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#normalizeRatings#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#calculateSimilarity#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#item_itemCollaborativeFilter#0;class#Collaborative#0" expanded="false" />
+            <element signature="method#globalBaselineEstimate#0;class#Collaborative#0" expanded="false" />
+            <element signature="class#Item#0" expanded="false" />
+            <element signature="class#CustomComparator#0" expanded="false" />
+            <element signature="e#16879#16880#0" expanded="true" />
+            <element signature="e#16931#16932#0" expanded="true" />
           </folding>
         </state>
       </provider>
