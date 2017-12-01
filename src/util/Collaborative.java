@@ -118,8 +118,52 @@ public class Collaborative {
 		data.forEach(x -> System.out.println(x.toString()));
 	}
 
-	// Class to implement collaborative filter
-	public static HashMap<String, HashMap<String, Double>> calculateRatings(){
+	// Class to implement item-item collaborative filter method
+	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithItem_ItemFilter(){
+
+		// Row and column variables
+		int itemCount = reviewMap.size();
+
+		// Create arraylist matrix of items and their reviews by users
+		HashMap<String, HashMap<String, Double>> ratings = new HashMap<>(itemCount);
+
+		// Retrieve list of users for all items
+		ArrayList<String> userList = new ArrayList<>();
+		reviewMap.forEach((itemID, reviewLst) -> {
+			reviewLst.forEach(review -> {
+				if(!userList.contains(review.getReviewerID())){
+					userList.add(review.getReviewerID());
+				}
+			});
+		});
+
+		// Initialilze ratings matrix, aka set all reviews to 0.0
+		// Then retrive ratigs for all reviews for each item
+		reviewMap.forEach((itemID, reviewLst) -> {
+			ratings.put(itemID, new HashMap<String, Double>(){{
+				userList.forEach(user -> put(user, 0.0));
+			}});
+			reviewLst.forEach(review -> {
+				ratings.get(itemID).put(review.getReviewerID(), review.getOverall());
+			});
+		});
+
+		// Begin calculations to estimate missing ratings
+
+		// Step 1: normalize ratings
+		HashMap<String, HashMap<String, Double>> normalizedRatings = normalizeRatings(ratings, itemCount, userList);
+
+		// Step 2: calculate centered cosine similarity
+		HashMap<String, HashMap<String, Double>> similarityMatrix = calculateSimilarity(normalizedRatings, itemCount, userList);
+
+		// Step 3: estimate missing ratings
+		item_itemCollaborativeFilter(ratings, similarityMatrix);
+
+		return ratings;
+	}
+
+	// Class to implement global baseline method
+	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithGlobalBaseline(){
 
 		// Row and column variables
 		int itemCount = reviewMap.size();
@@ -153,14 +197,7 @@ public class Collaborative {
 		// Calculate general statistics of ratings: mean item ratings, mean user ratings, global mean item rating, and global mean user rating
 		calculateMeanVariables(ratings, userList);
 
-		// Step 1: normalize ratings
-		HashMap<String, HashMap<String, Double>> normalizedRatings = normalizeRatings(ratings, itemCount, userList);
-
-		// Step 2: calculate centered cosine similarity
-		HashMap<String, HashMap<String, Double>> similarityMatrix = calculateSimilarity(normalizedRatings, itemCount, userList);
-
-		// Step 3: estimate missing ratings
-		//item_itemCollaborativeFilter(ratings, similarityMatrix);
+		// Estimate ratings using global baseline estimate
 		globalBaselineEstimate(ratings);
 
 		return ratings;
