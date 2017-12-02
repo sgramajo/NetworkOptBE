@@ -14,12 +14,13 @@ import com.google.gson.reflect.TypeToken;
 import model.HomeKitchen;
 import model.ItemInfo;
 import model.Reviews;
+import model.Users;
 
 /* This class deals with the collaborative filtering
  * in the data sets*/
 public class Collaborative {
 	
-	public static List<String> users = new ArrayList<String>(); 
+	public static List<Users> users = new ArrayList<Users>(); 
 	public static Map<String, List<Reviews>>reviewMap = new HashMap<String, List<Reviews>>(); 
 	public static Map<String, HomeKitchen> map = new HashMap<String, HomeKitchen>();
 
@@ -71,12 +72,12 @@ public class Collaborative {
 						List<Reviews> reviews = reviewMap.get(i.getAsin());
 						reviews.add(i); 
 						reviewMap.put(i.getAsin(), reviews); 
-						users.add(i.getReviewerName()); 
+						users.add(new Users(i.getReviewerName(), i.getReviewerID())); 
 					}else{
 						List<Reviews> reviews = new ArrayList<Reviews>(); 
 						reviews.add(i); 
 						reviewMap.put(i.getAsin(), reviews); 
-						users.add(i.getReviewerName()); 
+						users.add(new Users(i.getReviewerName(), i.getReviewerID())); 
 					}
 				}
 			}//end of for loop
@@ -182,14 +183,13 @@ public class Collaborative {
 
 	public static Double getRating(String productID, String userID, String type){
 		HashMap<String, HashMap<String, Double>> ratings = null; 
-		
 		if(type.equals("global")){
 			ratings = calculateRatingsWithGlobalBaseline();
 		}else{
 			ratings = calculateRatingsWithItem_ItemFilter(); 
 		}
 		HashMap<String, Double> users = ratings.get(productID); 
-		return users.get(userID); 
+		return users.get(userID);
 	}
 	// Class to implement global baseline method
 	public static HashMap<String, HashMap<String, Double>> calculateRatingsWithGlobalBaseline(){
