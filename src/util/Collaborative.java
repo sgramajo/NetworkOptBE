@@ -17,6 +17,7 @@ import model.GlobalItemItem;
 import model.HomeKitchen;
 import model.ItemInfo;
 import model.Reviews;
+import model.UserRatings;
 import model.Users;
 
 /* This class deals with the collaborative filtering
@@ -191,7 +192,17 @@ public class Collaborative {
 
 		return estimatedRatings;
 	}
-
+	
+	public static List<UserRatings> getRecommendationItems(String userID){
+		Map<String, HashMap<String, Double>> ratings = calculateRatingsWithGlobalBaseline(); 
+		List<UserRatings> userResults = new ArrayList<UserRatings>(); 
+		for (Map.Entry<String, HashMap<String, Double>> entry : ratings.entrySet()) {
+			userResults.add(new UserRatings(map.get(entry.getKey()), entry.getValue().get(userID))); 
+		}
+		
+		return userResults;
+	}
+	
 	public GlobalItemItem getRating(String productID, String userID){
 		HashMap<String, HashMap<String, Double>> ratings = calculateRatingsWithGlobalBaseline();
 		HashMap<String, HashMap<String, Double>>ratings2 = calculateRatingsWithItem_ItemFilter(); 

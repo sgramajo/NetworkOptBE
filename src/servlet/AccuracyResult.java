@@ -25,16 +25,22 @@ public class AccuracyResult extends HttpServlet {
      */
     public AccuracyResult() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * This will get the matrix with values that we will empty out
+	 * This will get the recommended items
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String userID = request.getParameter("userID");
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Access-Control-Allow-Origin", "*");//cross domain request/CORS
+		Gson gson = new Gson(); 
+		Collaborative items = new Collaborative(); 
+		String json = gson.toJson(items.getRecommendationItems(userID));
+		response.getWriter().write(json);
 	}
 
 	/**
