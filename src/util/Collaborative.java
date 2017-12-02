@@ -36,6 +36,7 @@ public class Collaborative {
 	public static double collaborativeFilterRMSE = 0.0;
 	public static double globalBaselineMSE = 0.0;
 	public static HashMap<String, HashMap<String, Double>> actualRatings;
+	public static HashMap<String, HashMap<String, Double>> missingRatings;
 	public static HashMap<String, HashMap<String, Double>> collaborativeFilterRatings;
 	public static HashMap<String, HashMap<String, Double>> globalBaselineRatings;
 
@@ -274,9 +275,9 @@ public class Collaborative {
 		}};
 		ArrayList<String> userList = new ArrayList<>(Arrays.asList("Rebeca", "Stacy", "Melissa", "Ashton", "Jessica", "Pom", "Minoska", "Luis", "Martha", "Ezequiel"));
 
-		// Ratings with a missing test data set of size 20
+		// Ratings with a missing test data set of size 40
 		int testDataSize = 40;
-		HashMap<String, HashMap<String, Double>> missingRatings = new HashMap<String, HashMap<String, Double>>() {{
+		missingRatings = new HashMap<String, HashMap<String, Double>>() {{
 			put("Mulan", new HashMap<String, Double>() {{ put("Rebeca", 0.0);put("Stacy", 0.0);put("Melissa", 0.0);put("Ashton", 0.0);put("Jessica", 4.8);put("Pom", 5.0);put("Minoska", 5.0);put("Luis", 4.0);put("Martha", 4.8);put("Ezequiel", 3.5); }});
 			put("Moana", new HashMap<String, Double>() {{ put("Rebeca", 0.0);put("Stacy", 0.0);put("Melissa", 0.0);put("Ashton", 0.0);put("Jessica", 3.7);put("Pom", 4.0);put("Minoska", 4.0);put("Luis", 4.0);put("Martha", 3.0);put("Ezequiel", 3.0); }});
 			put("Hercules", new HashMap<String, Double>() {{ put("Rebeca", 0.0);put("Stacy", 0.0);put("Melissa", 0.0);put("Ashton", 0.0);put("Jessica", 3.0);put("Pom", 5.0);put("Minoska", 4.0);put("Luis", 5.0);put("Martha", 4.0);put("Ezequiel", 3.5); }});
